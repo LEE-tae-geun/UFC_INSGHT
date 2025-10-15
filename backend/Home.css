@@ -1,0 +1,30 @@
+.news-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.news-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  /* 긴 제목을 위한 처리 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2줄까지 표시 */
+  -webkit-box-orient: vertical;
+  min-height: 2.4em; /* 2줄 높이 확보 */
+}
+
+.news-summary {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
