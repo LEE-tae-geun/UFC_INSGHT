@@ -5,6 +5,13 @@ FROM ghcr.io/puppeteer/puppeteer:22.10.0
 # 작업 디렉토리 설정
 WORKDIR /usr/src/app
 
+# 파일 복사 전, pptruser가 디렉토리를 소유하도록 권한을 변경합니다.
+USER root
+RUN chown -R pptruser:pptruser /usr/src/app
+
+# 다시 pptruser로 전환합니다.
+USER pptruser
+
 # 백엔드 종속성 설치
 COPY backend/package*.json ./backend/
 WORKDIR /usr/src/app/backend
@@ -14,8 +21,6 @@ RUN npm install
 COPY frontend/package*.json ./frontend/
 WORKDIR /usr/src/app/frontend
 RUN npm install
-
-# 소스 코드 복사 및 프론트엔드 빌드
 COPY frontend/ ./
 RUN npm run build
 
